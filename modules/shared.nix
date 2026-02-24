@@ -29,6 +29,7 @@
     pkgs.delta
     pkgs.tldr
     pkgs.ruby
+    pkgs.nodejs_20
   ];
 
   # Homebrew packages

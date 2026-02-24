@@ -5,4 +5,12 @@
   environment.systemPackages = [
     pkgs.brave
   ];
+
+  homebrew = {
+    enable = true;
+    casks = [
+      "discord"
+    ];
+    onActivation.cleanup = "zap";
+  };
 }
