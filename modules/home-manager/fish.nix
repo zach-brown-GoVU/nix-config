@@ -6,6 +6,7 @@
 
     shellAliases = {
       drs = "darwin-rebuild switch --flake ~/nix";
+      hms = "home-manager switch --flake ~/nix";
       cd = "z";
       ls = "eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions";
       cat = "bat";

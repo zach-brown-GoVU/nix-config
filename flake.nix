@@ -35,13 +35,17 @@
         specialArgs = { inherit inputs username; };
         modules = [
           ./hosts/${nixpkgs.lib.toLower hostname}
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPkgs = true;
-            home-manager.extraSpecialArgs = { inherit inputs username; };
-            home-manager.users.${username} = import ./home/${username};
-          }
+        ];
+      };
+
+      mkHomeConfiguration = { system, username, hostname ? null }: home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+        extraSpecialArgs = { inherit inputs username; };
+        modules = [
+          ./home/${username}
         ];
       };
     in
@@ -49,6 +53,11 @@
       darwinConfigurations = {
         "VU-D4RW65L6QG" = mkDarwinConfiguration systems.work;
         "Zachs-MacBook-Pro" = mkDarwinConfiguration systems.personal;
+      };
+
+      homeConfigurations = {
+        "zacharyc.brown" = mkHomeConfiguration systems.work;
+        "zachbrown" = mkHomeConfiguration systems.personal;
       };
     };
 }

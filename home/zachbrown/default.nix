@@ -42,6 +42,9 @@
     stateVersion = "24.05";
   };
 
+  # Let home-manager manage itself
+  programs.home-manager.enable = true;
+
   # Personal git configuration
   programs.git.settings.user = {
     name = "Zach Brown";
