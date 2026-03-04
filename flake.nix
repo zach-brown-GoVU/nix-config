@@ -37,14 +37,13 @@
           ./hosts/${nixpkgs.lib.toLower hostname}
           home-manager.darwinModules.home-manager
           {
-            nixpkgs.config.allowUnfree = true;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs username; };
-            home-manager.users.${username} = { lib, ... }: {
+            home-manager.users.${username} = {
               imports = [ ./home/${username} ];
               home.username = username;
-              home.homeDirectory = lib.mkForce "/Users/${username}";
+              home.homeDirectory = "/Users/${username}";
             };
           }
         ];
