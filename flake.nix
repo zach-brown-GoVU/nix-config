@@ -40,7 +40,11 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs username; };
-            home-manager.users.${username} = import ./home/${username};
+            home-manager.users.${username} = {
+              imports = [ ./home/${username} ];
+              home.username = username;
+              home.homeDirectory = "/Users/${username}";
+            };
           }
         ];
       };
