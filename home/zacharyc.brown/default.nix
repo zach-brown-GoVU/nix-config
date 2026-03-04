@@ -18,6 +18,9 @@
 
   # Home-manager settings
   home = {
+    username = username;
+    homeDirectory = "/Users/${username}";
+
     # User packages
     packages = with pkgs; [
       # CLI tools
